@@ -1,0 +1,26 @@
+﻿Overfitting Analysis
+* Does the model overfit? No, the model does not show significant overfitting,
+ as my loss comparison graph shows both the train loss and val loss trend downward together. 
+ Overfitting was reduced because of the three types of data augmentation 
+ (rotation, zoom, and color jitter) and Dropout layer.
+________________
+
+
+Image Misclassification
+* Example 1 (Compact vs. Sedan): The model confused a compact and a sedan, due to the scale of 
+the sedan being challenging to establish without any comparable objects.
+* Example 2 (Convertible vs. Coupe): The model confused a coupe and convertible, due to the
+ convertible having a retractable hardtop that is virtually indistinguishable from a coupe.
+________________
+
+
+Classification Deep-Dive
+i. ImageNet Similarity and Feature Fit
+    * Difference from ImageNet: The dataset is similar to ImageNet, which also contains thousands of car-related images.
+    * Feature Fit: The pre-trained features were a great fit for the data, as MobileNetV2 
+    was already trained to recognize wheels, windows, and metallic surfaces. 
+ii. Flatten vs. Global Average Pooling (GAP)
+    * Trainable Parameters: Switching from a GAP layer to a Flatten layer would drastically 
+    increase the number of trainable parameters, as using a Flatten layer would significantly
+    increase the risk of overfitting. The massive increase in parameters would allow the model 
+    to "memorize" the training data more easily, leading to a large performance gap between training and validation.
